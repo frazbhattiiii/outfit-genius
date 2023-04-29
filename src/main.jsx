@@ -10,6 +10,7 @@ import Authentication from "./routes/Authentication";
 import NavBar from "./components/common/NavBar";
 import Search from "./routes/Search";
 import About from "./components/About/About";
+import Contact from "./components/Contact/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path:'/about',
     element:<About/>
+  },
+  {
+    path:'/contact',
+    element:<Contact/>
   }
 ]);
 
