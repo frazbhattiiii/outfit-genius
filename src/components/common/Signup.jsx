@@ -103,7 +103,7 @@ export default function SignUp() {
               <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="I will not do anything against the website rules."
                 />
               </Grid>
             </Grid>
@@ -111,7 +111,11 @@ export default function SignUp() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2 ,bgcolor:'#333333',color:'white',
+              '&:hover': {
+                backgroundColor: "#032c2a",
+                color: "white",
+              },}}
             >
               Sign Up
             </Button>

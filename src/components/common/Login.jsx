@@ -84,7 +84,12 @@ export default function Login() {
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2,bgcolor:'#333333',color:'white',
+                '&:hover': {
+                  backgroundColor: "#032c2a",
+                  color: "white",
+                },
+            }}
             >
               Sign In
             </Button>
