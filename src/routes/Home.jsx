@@ -1,7 +1,9 @@
+import Hero from "../components/hero/hero"
+
 const Home = () => {
   return (
-    <div>
-      This is the home of the application
+    <div className="main-container">
+      <Hero/>
     </div>
   )
 }
