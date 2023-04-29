@@ -8,6 +8,7 @@ import "./index.css";
 import Home from "./routes/home";
 import Authentication from "./routes/Authentication";
 import NavBar from "./components/common/NavBar";
+import Search from "./routes/Search";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
     path:"/auth",
     element: <Authentication/>
 
+  },
+  {
+    path:"/search",
+    element: <Search/>
   }
 ]);
 
