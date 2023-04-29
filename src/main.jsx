@@ -9,6 +9,7 @@ import Home from "./routes/home";
 import Authentication from "./routes/Authentication";
 import NavBar from "./components/common/NavBar";
 import Search from "./routes/Search";
+import About from "./components/About/About";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path:"/search",
     element: <Search/>
+  },
+  {
+    path:'/about',
+    element:<About/>
   }
 ]);
 
