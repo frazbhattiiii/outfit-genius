@@ -11,6 +11,7 @@ import NavBar from "./components/common/NavBar";
 import Search from "./routes/Search";
 import About from "./components/About/About";
 import Contact from "./components/Contact/Contact";
+
 const router = createBrowserRouter([
   {
     path: "/",

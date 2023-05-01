@@ -1,4 +1,4 @@
-
+import { useContext } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { UserContext } from '../../context/userContext';
 
 function Copyright(props) {
   return (
@@ -25,17 +26,20 @@ function Copyright(props) {
     </Typography>
   );
 }
-
 const theme = createTheme();
 
 export default function SignUp() {
+  const {signup} = useContext(UserContext);
+ 
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+    const user = {
+      username: data.get('firstName') + " " + data.get('lastName'),
       email: data.get('email'),
       password: data.get('password'),
-    });
+    }
+    signup(user);
   };
 
   return (
