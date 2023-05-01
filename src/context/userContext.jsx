@@ -15,8 +15,16 @@ export const UserProvider = ({children}) => {
 
   };
 
+  const login = (data) => {
+    // sending request to backend with axios
+    axios.post("http://localhost:3000/auth/login", data)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
+  };
+
+
   return (
-    <UserContext.Provider value =  {{user,signup}}>
+    <UserContext.Provider value =  {{user,signup,login}}>
       {children}
     </UserContext.Provider>
   );
