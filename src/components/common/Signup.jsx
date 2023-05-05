@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext,useEffect,useState } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,7 +12,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { UserContext } from '../../context/userContext';
+import { UserContext} from '../../context/userContext';
+import { ToastContainer, toast } from 'react-toastify';
 
 function Copyright(props) {
   return (
@@ -28,10 +29,22 @@ function Copyright(props) {
 }
 const theme = createTheme();
 
+
 export default function SignUp() {
-  const {signup} = useContext(UserContext);
+  const {signup,message,error,setMessage,setError} = useContext(UserContext);
  
-  const handleSubmit = (event) => {
+  useEffect(() => {
+    if (message) {
+      toast.success(message);
+      setMessage(null);
+    }
+    if (error) {
+      toast.error(error);
+      setError(null);
+    }
+  } , [message,error]);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const user = {
@@ -39,11 +52,26 @@ export default function SignUp() {
       email: data.get('email'),
       password: data.get('password'),
     }
-    signup(user);
+    // validation of email and password
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    if (!emailRegex.test(user.email)) {
+      toast.error("Invalid email address");
+      return;
+    }
+    if (!passwordRegex.test(user.password)) {
+      toast.error("Password must be at least 8 characters long and contain at least one letter and one number");
+      return;
+    }
+
+
+    await signup(user); 
+
   };
 
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
@@ -102,12 +130,6 @@ export default function SignUp() {
                   type="password"
                   id="password"
                   autoComplete="new-password"
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I will not do anything against the website rules."
                 />
               </Grid>
             </Grid>

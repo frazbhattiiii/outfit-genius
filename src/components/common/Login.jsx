@@ -12,7 +12,9 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { UserContext } from '../../context/userContext';
-import { useContext } from 'react';
+import { useContext, useState,useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import {useNavigate} from 'react-router-dom';
 
 function Copyright(props) {
   return (
@@ -31,7 +33,27 @@ const theme = createTheme();
 
 export default function Login() {
 
-  const {login} = useContext(UserContext);
+  const {login,message,error,setError,setMessage} = useContext(UserContext);
+  let navigate = useNavigate();
+  // getting the login token from the cookie  
+  useEffect(() => {
+    if (message) {
+      toast.success(message);
+      setMessage(null);
+      setTimeout(() => {
+        // refreshing the window after login
+        window.location.reload();
+      }
+      , 2000);
+      
+
+    }
+    if (error) {
+      toast.error(error);
+      setError(null);
+    }
+  } , [message,error]);
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -45,6 +67,7 @@ export default function Login() {
 
   return (
     <ThemeProvider theme={theme}>
+      <ToastContainer />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

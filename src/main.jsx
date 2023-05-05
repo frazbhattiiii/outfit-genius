@@ -1,44 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 import "./index.css";
-import Home from "./routes/home";
-import Authentication from "./routes/Authentication";
+import 'react-toastify/dist/ReactToastify.css';
+import {Home, Auth, Search, About, ContactPage} from "./pages";
 import NavBar from "./components/common/NavBar";
-import Search from "./routes/Search";
-import About from "./components/About/About";
-import Contact from "./components/Contact/Contact";
+import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path:"/auth",
-    element: <Authentication/>
-
-  },
-  {
-    path:"/search",
-    element: <Search/>
-  },
-  {
-    path:'/about',
-    element:<About/>
-  },
-  {
-    path:'/contact',
-    element:<Contact/>
-  }
-]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <NavBar/>
-    <RouterProvider router={router} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/logout" element={<Navigate to="/contact" />} />
+      </Routes>
+    </Router>
+
   </React.StrictMode>
 );
