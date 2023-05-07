@@ -40,7 +40,7 @@ export default function SearchDropDown({brands,types,sizes}) {
 
       }}>
       <FormControl sx={{ m: 1, minWidth: 180 }}>
-        <InputLabel id="demo-simple-select-helper-label">Outfit</InputLabel>
+        <InputLabel id="demo-simple-select-helper-label">Brand</InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
