@@ -2,9 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import 'react-toastify/dist/ReactToastify.css';
-import {Home, Auth, Search, About, ContactPage} from "./pages";
+import {Home, Auth, Search, About, ContactPage,Product} from "./pages";
 import NavBar from "./components/common/NavBar";
+import Logout from "./components/common/Logout";
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
+import Footer from "./components/common/Footer";
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -14,12 +16,14 @@ ReactDOM.createRoot(document.getElementById("root")).render(
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/product" element={<Product />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/auth" element={<Auth />} />
-        <Route path="/logout" element={<Navigate to="/contact" />} />
+        <Route path="/logout" element={<Logout />} />
       </Routes>
     </Router>
+    <Footer/>
 
   </React.StrictMode>
 );

@@ -1,7 +1,15 @@
 import React from "react";
 import { Button } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
-const SearchButton = () => {
+import { useNavigate } from "react-router-dom";
+
+const SearchButton = ({brand,type,size}) => {
+  const navigate = useNavigate();
+  const handleSearch = () => {
+    console.log(brand,type,size)
+    // redirecting to search page with params in url
+    navigate(`/product?brand=${brand}&type=${type}&size=${size}`);
+  }
   return (
     <div>
       <Button
@@ -17,6 +25,7 @@ const SearchButton = () => {
           },
         }}
         endIcon={<SearchIcon />}
+        onClick={() => handleSearch()}
       >
         Search
       </Button>

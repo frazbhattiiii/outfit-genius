@@ -84,9 +84,9 @@ function ProductComparison() {
           <ComparisonButton variant="contained">View Details</ComparisonButton>
         </ComparisonCard>
         <ComparisonCard>
-          <ComparisonTitle variant="h3">Trousers</ComparisonTitle>
+          <ComparisonTitle variant="h3">Shorts</ComparisonTitle>
           <ComparisonText>
-            Trousers from different brands and stores are compared based on their price, quality, and style.
+            Shorts from different brands and stores are compared based on their price, quality, and style.
           </ComparisonText>
           <ComparisonButton variant="contained">View Details</ComparisonButton>
         </ComparisonCard>

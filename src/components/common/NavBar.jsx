@@ -79,6 +79,7 @@ const NavBar = () => {
     setAnchorEl(null);
   };
 
+
   return (
     <StyledAppBar position="static">
       <Toolbar>

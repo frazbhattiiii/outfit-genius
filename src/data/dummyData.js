@@ -9,17 +9,27 @@ const options = [
   [
     'Shirts',
     'Pants',
-    'Trousers'
+    'Trousers',
+    'Shorts',
+    'Dresses',
+    "Socks",
   ],
   [
     'Nike',
     'Adidas',
-    'Puma'
+    'Puma',
+    'Reebok',
+    'Under Armour',
+    'New Balance',
+    'Vans',
+    'Converse',
   ],
   [
     'Small',
     'Medium',
-    'Large'
+    'Large',
+    'X-Large',
+    'XX-Large',
   ]
 ];
 
