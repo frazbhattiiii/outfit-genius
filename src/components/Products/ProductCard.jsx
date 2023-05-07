@@ -16,7 +16,7 @@ export default function ProductCard({product}) {
       <Typography level="h3" fontSize="md" sx={{ mb: 0.5 }}>
         {product.size}
       </Typography>
-      <Typography level="body2">{product.brand}</Typography>
+      <Typography level="body2">{product.brand.toUpperCase()}</Typography>
       <IconButton
         aria-label="bookmark Bahamas Islands"
         variant="plain"
@@ -45,6 +45,7 @@ export default function ProductCard({product}) {
           color="primary"
           aria-label="Explore Bahamas Islands"
           sx={{ ml: 'auto', fontWeight: 600 }}
+          onClick={() => window.open(product.link)}
         >
           Explore
         </Button>

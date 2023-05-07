@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IconButton, InputBase } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import { styled, useTheme } from '@mui/material/styles';
+import {useNavigate} from 'react-router-dom';
 
 const SearchContainer = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -48,11 +49,21 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const SearchBar = () => {
   const [searchText, setSearchText] = useState('');
+  const navigate = useNavigate();
 
   const handleSearch = (event) => {
     event.preventDefault();
     console.log('Searching for:', searchText);
-    // Add your search logic here
+    // Extracting brand type size from search text
+    const brand = searchText.split(' ')[0];
+    const type = searchText.split(' ')[1];
+    const size = searchText.split(' ')[2];
+    console.log('Brand:', brand);
+    console.log('Type:', type);
+    console.log('Size:', size);
+    // Navigate to search results page
+    navigate(`/product?brand=${brand?brand:""}&type=${type?type:""}&size=${size?size:""}`);
+
   };
 
   const handleInputChange = (event) => {
@@ -66,7 +77,7 @@ const SearchBar = () => {
       </IconButton>
       <form onSubmit={handleSearch} style={{ width: '100%' }}>
         <StyledInputBase
-          placeholder="Search..."
+          placeholder="Enter brand, type, and size"
           value={searchText}
           onChange={handleInputChange}
           fullWidth

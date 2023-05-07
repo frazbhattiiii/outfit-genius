@@ -12,9 +12,9 @@ function ProductList({ products }) {
   const [currentPage, setCurrentPage] = React.useState(1);
   const navigate = useNavigate();
   const params = new URLSearchParams(window.location.search);
-  const brand = params.get("brand");
-  const type = params.get("type");
-  const size = params.get("size");
+  const brand = params.get("brand").toLowerCase();
+  const type = params.get("type").toLowerCase();
+  const size = params.get("size").toLowerCase();
   const page = params.get("page");
 
   // filtering products based on params
@@ -36,6 +36,7 @@ function ProductList({ products }) {
   const handlePageChange = (event, value) => {
     console.log(value)
     setCurrentPage(value);
+    
     navigate(`/product?brand=${brand}&type=${type}&size=${size}&page=${value}`);
   };
 
