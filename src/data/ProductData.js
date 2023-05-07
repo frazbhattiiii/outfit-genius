@@ -32,7 +32,7 @@ const productData =[
   {
     id: 4,
     name: "Puma Shirt",
-    brand: "Puma",
+    brand: "puma",
     price: 90,
     size: "medium",
     type: "shirt",
@@ -42,7 +42,7 @@ const productData =[
   {
     id: 5,
     name: "Puma Pants",
-    brand: "Puma",
+    brand: "puma",
     price: 110,
     size: "large",
     type: "pants",
@@ -52,7 +52,7 @@ const productData =[
   {
     id: 6,
     name: "Puma Shorts",
-    brand: "Puma",
+    brand: "puma",
     price: 50,
     size: "small",
     type: "shorts",
