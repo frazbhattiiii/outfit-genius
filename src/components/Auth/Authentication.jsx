@@ -1,6 +1,6 @@
-import Auth from '../common/Auth';
-import Login from '../common/Login';
-import Signup from '../common/Signup';
+import Auth from './Auth';
+import Login from './Login';
+import Signup from './Signup';
 import { UserProvider } from '../../context/userContext';
 const Authentication = () => {
   return (

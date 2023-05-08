@@ -6,6 +6,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import logo from '../../assets/logo.png';
 import { isLoggedIn } from '../../utils/isLoggedIn';
+
 const StyledAppBar = styled(AppBar)({
   background: '#032c2a',
   color: '#ffffff',
@@ -94,13 +95,16 @@ const NavBar = () => {
         </Box>
         <NavLinks>
           {
-          isLoggedIn () ? 
-          <Button variant="text" href='/logout' sx={{color:'white'}}>Logout</Button>:
+          !isLoggedIn () && 
           <Button variant="text" href='/auth' sx={{color:'white'}}>Login</Button>
           }
           <Button variant="text" href='/search'>Search</Button>
+          <Button variant="text" href='/recommend'>Recommend</Button>
           <Button variant="text" href='/about'>About</Button>
           <Button variant="text" href='/contact'>Contact</Button>
+          {
+          isLoggedIn () && <Button variant="text" href='/logout' sx={{color:'white'}}>Logout</Button>
+          }
         </NavLinks>
         <HamburgerMenu>
           <IconButton onClick={handleMenuOpen}>
@@ -113,13 +117,17 @@ const NavBar = () => {
             onClose={handleMenuClose}
           >
             {
-          isLoggedIn () ?
-          <MenuItem onClick={handleMenuClose} component={Link} href='/logout'>Logout</MenuItem>:
+          !isLoggedIn () &&
           <MenuItem onClick={handleMenuClose} component={Link} href='/auth'>Login</MenuItem>
             }
             <MenuItem onClick={handleMenuClose} component = {Link} href='/search'>Search</MenuItem>
+            <MenuItem onClick={handleMenuClose} component = {Link} href='/recommend'>Recommend</MenuItem>
             <MenuItem onClick={handleMenuClose} component={Link} href='/about'>About</MenuItem>
             <MenuItem onClick={handleMenuClose} component={Link} href='/contact'>Contact</MenuItem>
+            {
+              isLoggedIn () &&
+              <MenuItem onClick={handleMenuClose} component={Link} href='/logout'>Logout</MenuItem>
+            }
           </Menu>
         </HamburgerMenu>
       </Toolbar>

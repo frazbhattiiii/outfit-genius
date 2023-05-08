@@ -14,6 +14,8 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { UserContext} from '../../context/userContext';
 import { ToastContainer, toast } from 'react-toastify';
+import { Visibility,VisibilityOff } from '@mui/icons-material';
+import { InputAdornment,IconButton } from '@mui/material';
 
 function Copyright(props) {
   return (
@@ -32,6 +34,9 @@ const theme = createTheme();
 
 export default function SignUp() {
   const {signup,message,error,setMessage,setError} = useContext(UserContext);
+  const [showPassword, setShowPassword] = useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+
  
   useEffect(() => {
     if (message) {
@@ -127,10 +132,28 @@ export default function SignUp() {
                   fullWidth
                   name="password"
                   label="Password"
-                  type="password"
+                  type={showPassword ? 'text' : 'password'}
                   id="password"
                   autoComplete="new-password"
+                  InputProps={{
+                    endAdornment:
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle password visibility"
+                          onClick={handleClickShowPassword}
+                          edge="end"
+                        >
+                          {showPassword ? <VisibilityOff /> : <Visibility />}
+                        </IconButton>
+                      </InputAdornment>
+                    
+                  }}
                 />
+                {/* to show password when clicked on icon */}
+                
+
+              
+
               </Grid>
             </Grid>
             <Button

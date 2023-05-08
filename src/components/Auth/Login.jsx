@@ -15,6 +15,9 @@ import { UserContext } from '../../context/userContext';
 import { useContext, useState,useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import {useNavigate} from 'react-router-dom';
+import { Visibility,VisibilityOff } from '@mui/icons-material';
+import { InputAdornment,IconButton } from '@mui/material';
+
 
 function Copyright(props) {
   return (
@@ -35,6 +38,9 @@ export default function Login() {
 
   const {login,message,error,setError,setMessage} = useContext(UserContext);
   let navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
   // getting the login token from the cookie  
   useEffect(() => {
     if (message) {
@@ -101,9 +107,22 @@ export default function Login() {
               fullWidth
               name="password"
               label="Password"
-              type="password"
+              type={showPassword ? 'text' : 'password'}
               id="password"
               autoComplete="current-password"
+              InputProps={{
+                endAdornment:
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}

@@ -4,7 +4,7 @@ import "./index.css";
 import 'react-toastify/dist/ReactToastify.css';
 import {Home, Auth, Search, About, ContactPage,Product,Recommend} from "./pages";
 import NavBar from "./components/common/NavBar";
-import Logout from "./components/common/Logout";
+import Logout from "./components/Auth/Logout";
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
 import Footer from "./components/common/Footer";
 

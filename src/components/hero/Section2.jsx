@@ -10,7 +10,7 @@ const Section2 = () => {
   });
   return (
     <div style={{
-      backgroundColor: '#F5F5F5'
+      backgroundColor: '#F5F5F5',
     }}>
       <ProductComparison/>
       
