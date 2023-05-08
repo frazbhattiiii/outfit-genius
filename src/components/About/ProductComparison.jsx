@@ -1,5 +1,6 @@
 import { Box, Container, Typography,Button } from '@mui/material';
 import { styled } from '@mui/system';
+import { useNavigate } from 'react-router-dom';
 
 const ProductComparisonSection = styled('section')({
   backgroundColor: '#F5F5F5',
@@ -65,6 +66,7 @@ const ComparisonButton = styled(Button)({
 });
 
 function ProductComparison() {
+  const navigate = useNavigate();
   return (
     <ProductComparisonSection>
       <SectionTitle variant="h2">Product Comparison</SectionTitle>
@@ -88,7 +90,7 @@ function ProductComparison() {
           <ComparisonText>
             Shorts from different brands and stores are compared based on their price, quality, and style.
           </ComparisonText>
-          <ComparisonButton variant="contained">View Details</ComparisonButton>
+          <ComparisonButton variant="contained" onClick={()=>navigate('/search')}>View Details</ComparisonButton>
         </ComparisonCard>
       </ComparisonContainer>
     </ProductComparisonSection>

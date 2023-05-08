@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import 'react-toastify/dist/ReactToastify.css';
-import {Home, Auth, Search, About, ContactPage,Product} from "./pages";
+import {Home, Auth, Search, About, ContactPage,Product,Recommend} from "./pages";
 import NavBar from "./components/common/NavBar";
 import Logout from "./components/common/Logout";
 import { BrowserRouter as Router, Route, Routes, Navigate} from "react-router-dom";
@@ -21,6 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/auth" element={<Auth />} />
         <Route path="/logout" element={<Logout />} />
+        <Route path="/recommend" element={<Recommend />} />
       </Routes>
     </Router>
     <Footer/>

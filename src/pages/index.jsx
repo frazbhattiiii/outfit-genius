@@ -6,5 +6,5 @@ import Search from "./Search";
 import About from "./About";
 import ContactPage from "./Contact";
 import Product from "./Product";
-
-export { Home, Auth, Search, About, ContactPage , Product};
+import Recommend from "./Recommend";
+export { Home, Auth, Search, About, ContactPage , Product,Recommend};
