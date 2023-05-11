@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-import { Box, IconButton, TextField, Button } from "@mui/material";
+import { Box, IconButton, TextField, Button, Card, Typography } from "@mui/material";
 import { useTheme } from "@mui/system";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
+import Loader from "../common/Loader";
 
 const ImageUpload = ({}) => {
   const [file, setFile] = useState();
   const [image, setImage] = useState();
+  const [recommendedImages,setRecommendedImages] = useState();
+  const [loading, setLoading] = useState(false);
 
   const theme = useTheme();
 
@@ -19,18 +22,31 @@ const ImageUpload = ({}) => {
 
   const handleUpload = () => {
     const formData = new FormData();
-    formData.append("image", image);
+    // chaning the name of the image 
+    formData.append("image", image, "image.jpg");
     console.log(formData);
 
     if (image) {
+      setLoading(true);
       axios
         .post("http://localhost:3000/image/upload", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         })
-        .then(() => {
-          toast.success("Image Uploaded!");
+        .then((res) => {
+          console.log(res.data)
+          const response = res.data;
+          const imagesArray = response.images;
+          const imageArray = imagesArray.slice(2, 7);
+          const imageSrcArray = imageArray.map((data) => `data:image/jpeg;base64,${data}`);
+
+
+          console.log(imageSrcArray);
+          setRecommendedImages(imageSrcArray);
+          setLoading(false);
+
+          toast.success("See the Recommended Images");
         })
         .catch((err) => toast.error("Error uploading image"));
     } else {
@@ -40,7 +56,12 @@ const ImageUpload = ({}) => {
 
   return (
     <>
-    <ToastContainer />
+    {
+      loading ? (
+        <Loader load={loading} />
+      ) : (
+        <>
+        <ToastContainer />
       <Box
         sx={{
           display: "flex",
@@ -94,8 +115,8 @@ const ImageUpload = ({}) => {
                 src={file}
                 alt=""
                 style={{
-                  width: "90%",
-                  height: "90%",
+                  width:400,
+                  height:400,
                 }}
               />
             </Box>
@@ -128,6 +149,37 @@ const ImageUpload = ({}) => {
           </Button>
         </Box>
       </Box>
+        <Box>
+        {recommendedImages && (
+          <Box sx={
+            {
+              display:'flex',
+              flexDirection:"row",
+              alignItems:"center",
+              justifyContent:"center",
+              flexWrap:"wrap",
+              margin:'1rem',
+              gap:'2rem'
+
+            }
+          }>
+            {recommendedImages.slice(0, 5).map((data, index) => (
+              <Card key={index} sx={{
+                padding: '16px', 
+                borderRadius: '8px', 
+                boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+                backgroundColor: '#FFFFFF',
+              }}>
+            <img key={index} src={data} alt={`Image ${index}`} width={400} height={400}/>
+            </Card>
+         ))}
+
+            </Box>
+            )}
+        </Box>
+        </>
+        )
+    }
     </>
   );
 };

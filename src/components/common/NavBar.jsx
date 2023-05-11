@@ -7,6 +7,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import logo from '../../assets/logo.png';
 import { isLoggedIn } from '../../utils/isLoggedIn';
 
+import {useNavigate } from 'react-router-dom';
+
 const StyledAppBar = styled(AppBar)({
   background: '#032c2a',
   color: '#ffffff',
@@ -71,13 +73,19 @@ const HamburgerMenu = styled('div')({
 });
 const NavBar = () => {
   const [anchorEl, setAnchorEl] = useState(null);
+  const navigate = useNavigate();
+
+  const handleNavigate = (path) => {
+    navigate(path);
+  }
 
   const handleMenuOpen = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMenuClose = () => {
+  const handleMenuClose = (path) => {
     setAnchorEl(null);
+    navigate(path);
   };
 
 
@@ -96,14 +104,14 @@ const NavBar = () => {
         <NavLinks>
           {
           !isLoggedIn () && 
-          <Button variant="text" href='/auth' sx={{color:'white'}}>Login</Button>
+          <Button variant="text" onClick={()=>handleNavigate('/auth')} sx={{color:'white'}}>Login</Button>
           }
-          <Button variant="text" href='/search'>Search</Button>
-          <Button variant="text" href='/recommend'>Recommend</Button>
-          <Button variant="text" href='/about'>About</Button>
-          <Button variant="text" href='/contact'>Contact</Button>
+          <Button variant="text" onClick={()=>handleNavigate('/search')}>Search</Button>
+          <Button variant="text" onClick={()=>handleNavigate('/recommend')}>Recommend</Button>
+          <Button variant="text" onClick={()=>handleNavigate('/about')}>About</Button>
+          <Button variant="text" onClick={()=>handleNavigate('/contact')}>Contact</Button>
           {
-          isLoggedIn () && <Button variant="text" href='/logout' sx={{color:'white'}}>Logout</Button>
+          isLoggedIn () && <Button variant="text" onClick={()=>handleNavigate('/logout')} sx={{color:'white'}}>Logout</Button>
           }
         </NavLinks>
         <HamburgerMenu>
@@ -118,15 +126,15 @@ const NavBar = () => {
           >
             {
           !isLoggedIn () &&
-          <MenuItem onClick={handleMenuClose} component={Link} href='/auth'>Login</MenuItem>
+          <MenuItem onClick={()=>handleMenuClose('/auth')} component={Link} href='/auth'>Login</MenuItem>
             }
-            <MenuItem onClick={handleMenuClose} component = {Link} href='/search'>Search</MenuItem>
-            <MenuItem onClick={handleMenuClose} component = {Link} href='/recommend'>Recommend</MenuItem>
-            <MenuItem onClick={handleMenuClose} component={Link} href='/about'>About</MenuItem>
-            <MenuItem onClick={handleMenuClose} component={Link} href='/contact'>Contact</MenuItem>
+            <MenuItem onClick={()=>handleMenuClose('/search')} component = {Link} >Search</MenuItem>
+            <MenuItem onClick={()=>handleMenuClose('/recommend')} component = {Link} >Recommend</MenuItem>
+            <MenuItem onClick={()=>handleMenuClose('/about')} component={Link} >About</MenuItem>
+            <MenuItem onClick={()=>handleMenuClose('/contact')} component={Link} >Contact</MenuItem>
             {
               isLoggedIn () &&
-              <MenuItem onClick={handleMenuClose} component={Link} href='/logout'>Logout</MenuItem>
+              <MenuItem onClick={()=>handleMenuClose('/logout')} component={Link}>Logout</MenuItem>
             }
           </Menu>
         </HamburgerMenu>

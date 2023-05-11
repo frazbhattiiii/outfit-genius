@@ -1,5 +1,6 @@
 import Section1 from "../components/hero/Section1"
 import Section2 from "../components/hero/Section2"
+import Section3 from "../components/hero/Section3"
 import Hero from "../components/hero/hero"
 
 const Home = () => {
@@ -11,6 +12,7 @@ const Home = () => {
     <div>
       <Section1/>
       <Section2/>
+      <Section3/>
     </div>
     </>
 
