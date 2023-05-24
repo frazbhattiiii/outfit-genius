@@ -11,6 +11,8 @@ const ImageUpload = ({}) => {
   const [image, setImage] = useState();
   const [recommendedImages,setRecommendedImages] = useState();
   const [loading, setLoading] = useState(false);
+  const [reUpload,setReUpload] = useState(false);
+  let dist = 0
 
   const theme = useTheme();
 
@@ -26,7 +28,7 @@ const ImageUpload = ({}) => {
     formData.append("image", image, "image.jpg");
     console.log(formData);
 
-    if (image) {
+    if (file) {
       setLoading(true);
       axios
         .post("http://localhost:3000/image/upload", formData, {
@@ -38,12 +40,15 @@ const ImageUpload = ({}) => {
           console.log(res.data)
           const response = res.data;
           const imagesArray = response.images;
-          const imageArray = imagesArray.slice(2, 7);
+          const imageArray = imagesArray
           const imageSrcArray = imageArray.map((data) => `data:image/jpeg;base64,${data}`);
+          dist =  response.distance
 
 
+          console.log(dist)
           console.log(imageSrcArray);
           setRecommendedImages(imageSrcArray);
+          setReUpload(true);
           setLoading(false);
 
           toast.success("See the Recommended Images");
@@ -147,6 +152,28 @@ const ImageUpload = ({}) => {
           >
             Recommend
           </Button>
+          {
+            reUpload && (
+              <Button
+              variant="contained"
+              sx={{
+                margin: "1rem",
+                padding: "1rem 2rem",
+                fontSize: ".76rem",
+                fontWeight: "bold",
+                marginBottom:"2rem",
+                color: "white",
+                backgroundColor: "GrayText",
+                "&:hover": {
+                  backgroundColor: "brown",
+                },
+              }}
+            onClick = {() => { setReUpload(false); setRecommendedImages(null); setFile('')}}
+            >
+             Upload again
+            </Button>
+            )
+          }
         </Box>
       </Box>
         <Box>
@@ -172,7 +199,8 @@ const ImageUpload = ({}) => {
               }}>
             <img key={index} src={data} alt={`Image ${index}`} width={400} height={400}/>
             </Card>
-         ))}
+         ))
+         }
 
             </Box>
             )}
